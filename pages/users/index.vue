@@ -1,6 +1,6 @@
 <template>
   <div>
-    <p>/users/index.vue</p>
+    <h2>/users/index.vue</h2>
   </div>
 </template>
 
