@@ -5,18 +5,17 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+
 export default {
-  async mounted() {
-    console.log(
-      JSON.stringify(
-        // Qiita API から、Nuxt.js のタグが付けられた投稿を取得する。
-        await this.$axios.$get(
-          "https://qiita.com/api/v2/items?query=tag:nuxt.js"
-        ),
-        true,
-        " "
-      )
-    );
+  async asyncData({ store }) {
+    if (store.getters["items"].length) {
+      return;
+    }
+    await store.dispatch("fetchItems");
+  },
+  computed: {
+    ...mapGetters(["items"])
   }
 };
 </script>
